@@ -33,6 +33,7 @@ public class Login {
                 {
                     System.out.println("Username not found");
                 }
+            System.out.println();
         }
 
 //        System.out.println(String.format("""
