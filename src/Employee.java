@@ -1,5 +1,3 @@
-package academy.learnprogramming;
-
 public class Employee {
 
     int vacationTime;
@@ -31,9 +29,4 @@ public class Employee {
     }
 
 
-    public static void main(String[] args) {
-        Employee em = new Employee(false,false);
-        em.getVacationTime();
-        em.setDaysRequestedOff(5);
-    }
 }
