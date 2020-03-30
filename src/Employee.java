@@ -1,5 +1,3 @@
-package academy.learnprogramming;
-
 public class Employee {
 
     int vacationTime;
@@ -16,8 +14,8 @@ public class Employee {
 
     public void setDaysRequestedOff(int daysRequestedOff) {
         this.daysRequestedOff = daysRequestedOff;
-        daysRequestedOff = vacationTime - daysRequestedOff;
-        System.out.println("Employee has " + vacationTime + " Vacation Days Left.");
+        int daysRequestedOff2 = vacationTime - daysRequestedOff;
+        System.out.println("Employee has requested off " + daysRequestedOff + " days. Employee has" +daysRequestedOff2+ " Vacation Days Left.");
     }
 
     public void  getVacationTime() {
