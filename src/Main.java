@@ -7,9 +7,10 @@ import java.io.FileNotFoundException;
 import java.util.Scanner;
 public class Main {
     static List<Employee> employeeList = new ArrayList<>();
-        start();
+
 //    static Scanner in = new Scanner(System.in);
     public static void main(String[] args) throws FileNotFoundException {
+        start();
 //        RecordRW rw = new RecordRW();
 ////        User ed = new User("Edward","Cochran");
 ////        User c = new User("Carmen")
