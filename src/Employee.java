@@ -1,6 +1,34 @@
-public class Employee {
+   // boolean isHoliday;
+public class Employee extends User {
 
-    int vacationTime;
+    public Employee(String first, String last)
+    {
+        this.firstName = first;
+        this.lastName = last;
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ /*   int vacationTime;
     int daysRequestedOff;
     boolean isHoliday;
     boolean isHere;
@@ -14,8 +42,8 @@ public class Employee {
 
     public void setDaysRequestedOff(int daysRequestedOff) {
         this.daysRequestedOff = daysRequestedOff;
-        int daysRequestedOff2 = vacationTime - daysRequestedOff;
-        System.out.println("Employee has requested off " + daysRequestedOff + " days. Employee has " +daysRequestedOff2+ " Vacation Days Left.");
+        daysRequestedOff = vacationTime - daysRequestedOff;
+        System.out.println("Employee has " + vacationTime + " Vacation Days Left.");
     }
 
     public void  getVacationTime() {
@@ -28,10 +56,5 @@ public class Employee {
         }
     }
 
-
-    public static void main(String[] args) {
-        Employee em = new Employee(false,false);
-        em.getVacationTime();
-        em.setDaysRequestedOff(5);
-    }
+*/
 }

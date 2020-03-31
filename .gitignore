@@ -9,4 +9,15 @@ Employee-Attendance-System.iml
 
 .idea/modules.xml
 
+
+out/production/Employee-Attendance-System/Employee.class
+
+out/production/Employee-Attendance-System/Login.class
+
+out/production/Employee-Attendance-System/Main.class
+
+out/production/Employee-Attendance-System/META-INF/Employee-Attendance-System.kotlin_module
+
+out/production/Employee-Attendance-System/User.class
+
 .idea/uiDesigner.xml
