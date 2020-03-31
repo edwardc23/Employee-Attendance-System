@@ -1,17 +1,11 @@
 public class User {
-    private String firstName;
-    private String lastName;
-    private String email;
-    private String phone;
-    private int id;
-    private int numOfTimesAbsent = 0;
+    protected String firstName;
+    protected String lastName;
+    protected String email;
+    protected String phone;
+    protected int id;
+    protected int numOfTimesAbsent = 0;
 
-
-    public User(String first, String last)
-    {
-        this.firstName = first;
-        this.lastName = last;
-    }
 
     public void setFirstName(String first)
     {
