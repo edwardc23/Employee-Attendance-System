@@ -1,4 +1,4 @@
-    boolean isHoliday;
+   // boolean isHoliday;
 public class Employee extends User {
 
     public Employee(String first, String last)
