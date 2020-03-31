@@ -15,7 +15,7 @@ public class Employee {
     public void setDaysRequestedOff(int daysRequestedOff) {
         this.daysRequestedOff = daysRequestedOff;
         int daysRequestedOff2 = vacationTime - daysRequestedOff;
-        System.out.println("Employee has requested off " + daysRequestedOff + " days. Employee has" +daysRequestedOff2+ " Vacation Days Left.");
+        System.out.println("Employee has requested off " + daysRequestedOff + " days. Employee has " +daysRequestedOff2+ " Vacation Days Left.");
     }
 
     public void  getVacationTime() {
