@@ -1,6 +1,33 @@
-public class Employee {
+public class Employee extends User {
 
-    int vacationTime;
+    public Employee(String first, String last)
+    {
+        this.firstName = first;
+        this.lastName = last;
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ /*   int vacationTime;
     int daysRequestedOff;
     boolean isHoliday;
     boolean isHere;
@@ -28,5 +55,5 @@ public class Employee {
         }
     }
 
-
+*/
 }
