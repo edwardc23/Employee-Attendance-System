@@ -19,14 +19,15 @@ public class Logger {
         rollCall.add("Jasmine");
 */
 
-        callAttendance(rollCall);
+        // callAttendance(rollCall);
+        isLateAttendance(rollCall);
 
 
     }
 
     public static void callAttendance(ArrayList<String> names) {
         boolean isHere;
-
+        Pair<String, Boolean> put;
         for (String name : names) {
             System.out.println("Is " + name + " here?");
             String ans = "";
@@ -36,6 +37,11 @@ public class Logger {
 
                 if (ans.equals("yes")) {
                     isHere = true;
+                    ctt.put(name, isHere);
+                    System.out.println("Was Employee on Time? ");
+                    isLate = false;
+                    ans = scan.next();
+                    if (ans.equals("Yes")) {
 
                     pair.put("Here",isHere);
                      ctt.put(name,pair);
@@ -48,7 +54,7 @@ public class Logger {
 
                 } else {
                     System.out.println("Invalid answer, enter yes or no.");
-                        ans = scan.next();
+                    ans = scan.next();
 
                 }
             }
@@ -59,12 +65,40 @@ public class Logger {
                System.out.println(k.getKey() + " is "+ l.getKey()+".");
            }
         }
-
-//
-
     }
 
-    public static void callAttendance(boolean isLate) {
+    public static void isLateAttendance(ArrayList<String> names) {
+
+        boolean isLate;
+
+        for (String name : names) {
+            System.out.println("Was " + name + " late?");
+            String ans = "";
+            while (!ans.equals("yes") && (!ans.equals("no"))) {
+                ans = scan.next();
+
+                if (ans.equals("yes")) {
+                    isLate = true;
+                    ctt.put(name, isLate);
+                } else if (ans.equals("no")) {
+                    isLate = false;
+                    ctt.put(name, isLate);
+
+                } else {
+                    System.out.println("Invalid answer, enter yes or no.");
+                    ans = scan.next();
+
+                }
+            }
+        }
+        for (var k : ctt.entrySet()) {
+            String name = k.getKey();
+            if (k.getValue()) {
+                System.out.println(name + " was late.");
+            } else {
+                System.out.println(name + " was on time.");
+            }
+        }
 
     }
 
