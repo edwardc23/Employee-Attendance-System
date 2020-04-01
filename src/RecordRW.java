@@ -33,6 +33,22 @@ public class RecordRW {
             e.printStackTrace();
         }
     }
+    public void writeAttendance(ArrayList<Logger.Stu> list,String name)
+    {
+        File file = new File(currDir+"\\src\\"+name+".txt");
+        try {
+            FileWriter fw= new FileWriter(file);
+
+            for(Logger.Stu l:list)
+            {
+                fw.write(l.name1+"  "+l.choice+"\n");
+            }
+            fw.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+    }
     public void writeDailyRecord(String name)
     {
         String currDir=System.getProperty("user.dir");

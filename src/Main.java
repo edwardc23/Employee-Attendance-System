@@ -2,17 +2,14 @@ import org.w3c.dom.ls.LSOutput;
 
 import javax.crypto.spec.PSource;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.InputMismatchException;
-import java.util.List;
-import java.util.Scanner;
+import java.util.*;
 import java.io.FileNotFoundException;
 import java.util.Scanner;
 public class Main {
     static RecordRW rw=new RecordRW();
+    static Logger l = new Logger();
     static List<Employee> employeeList = rw.read();
-
-//    static Scanner in = new Scanner(System.in);
+   static Scanner in = new Scanner(System.in);
     public static void main(String[] args) throws FileNotFoundException {
 
 
@@ -114,10 +111,37 @@ public class Main {
 
     static void menuRolls()
     {
-     for (Employee f:employeeList)
-     {
-         System.out.println(f.firstName+" "+f.lastName+" "+f.email+" "+f.phone);
-     }
+        System.out.println(
+                        "1. Employee Attendance\n" +
+                        "2. Late Roll\n");
+
+        int input = 0;
+
+        do {
+            try
+            {
+                Scanner scanner = new Scanner(System.in);
+                input = scanner.nextInt();
+                if(input < 1 || input > 2)
+                {
+                    System.out.println("please enter a valid number");
+                }
+            }catch(InputMismatchException e)
+            {
+                System.out.println("please enter a valid integer");
+            }
+        }while(input < 1 || input > 2);
+
+        switch(input)
+        {
+            case 1:
+                callRoll();
+                break;
+            case 2:
+                lateAttendee();
+                break;
+
+        }
 
     }
 
@@ -242,7 +266,7 @@ public class Main {
 
     static void removeEmployee()
     {
-        
+
 
         System.out.println("Select the number corresponding to the employee you wish to remove");
         int index = 0;
@@ -279,5 +303,32 @@ public class Main {
         rw.update(employeeList);
     }
 
+    static  void callRoll()
+    {
+        ArrayList<String> roll= new ArrayList<>();
+        for(Employee e: employeeList)
+        {
+            roll.add(e.firstName);
+        }
 
+        l.callAttendance(roll);
+
+
+    }
+    static void lateAttendee()
+    {
+        for(int x=0;x<employeeList.size();x++)
+        {
+            System.out.println((x+1)+". "+employeeList.get(x).firstName);
+        }
+        int index=-1;
+        do
+        {System.out.println("Choose index number of the student.");
+             index=in.nextInt()-1;
+
+        }while(!l.abc.get(index).here==false&&index!=-1);
+        l.latePerson(index);
+
+
+    }
 }
