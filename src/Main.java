@@ -1,6 +1,7 @@
 import org.w3c.dom.ls.LSOutput;
 
 import javax.crypto.spec.PSource;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.InputMismatchException;
 import java.util.List;
@@ -8,23 +9,27 @@ import java.util.Scanner;
 import java.io.FileNotFoundException;
 import java.util.Scanner;
 public class Main {
-    static List<Employee> employeeList = new ArrayList<>();
     static RecordRW rw=new RecordRW();
+    static List<Employee> employeeList = rw.read();
+
 //    static Scanner in = new Scanner(System.in);
     public static void main(String[] args) throws FileNotFoundException {
-        System.out.println("END");
 
 
-        }
-            keepLooping = start();
-        {
-        while(keepLooping)
         boolean keepLooping = true;
 
+
+
+        while(keepLooping){
+            keepLooping = start();
+        }
+            System.out.println("END");
     }
+
 
     static boolean start()
     {
+
         System.out.println("Select a number corresponding to the options below");
         System.out.println("1. Employee\n" +
                 "2. Rolls\n" +
@@ -109,7 +114,11 @@ public class Main {
 
     static void menuRolls()
     {
-        System.out.println("rolls");
+     for (Employee f:employeeList)
+     {
+         System.out.println(f.firstName+" "+f.lastName+" "+f.email+" "+f.phone);
+     }
+
     }
 
     static void menuRecords()
@@ -122,7 +131,7 @@ public class Main {
         Scanner scanner = new Scanner(System.in);
         System.out.print("Enter Employee First Name: ");
         String firstName = scanner.nextLine();
-        System.out.print("\n Enter Employee Last Name: ");
+        System.out.print("\nEnter Employee Last Name: ");
         String lastName = scanner.nextLine();
 
         Employee emp = new Employee(firstName, lastName);
@@ -134,7 +143,11 @@ public class Main {
         emp.setEmail(email);
         emp.setPhone(phone);
         employeeList.add(emp);
-
+        try {
+            rw.write("Employees",employeeList);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     static void modifyEmployeeInfo()
@@ -224,14 +237,12 @@ public class Main {
         System.out.println(employeeList.get(input-1).getLastName());
         System.out.println(employeeList.get(input-1).getEmail());
         System.out.println(employeeList.get(input-1).getPhone());
-
+        rw.update(employeeList);
     }
 
     static void removeEmployee()
     {
-        employeeList.add(new Employee("firstname1", "lastname1"));
-        employeeList.add(new Employee("firstname2", "lastname2"));
-        employeeList.add(new Employee("firstname3", "lastname3"));
+        
 
         System.out.println("Select the number corresponding to the employee you wish to remove");
         int index = 0;
@@ -265,6 +276,7 @@ public class Main {
         {
             System.out.println(i.getFirstName());
         }
+        rw.update(employeeList);
     }
 
 
