@@ -12,7 +12,7 @@ public class Logger {
         rollCall.add("Sarah");
         rollCall.add("Katie");
 
-        callAttendance(rollCall);
+       callAttendance(rollCall);
         latePerson(0);
 
     }
@@ -49,13 +49,13 @@ public class Logger {
                     isLate = false;
 
 
-                    abc.add(new Stu (name,"Here", isHere,isLate));
+                    abc.add(new Stu (name," is Here", isHere,isLate));
 
                 } else if (ans.equals("no")) {
                     isHere = false;
                     isLate = false;
 
-                    abc.add(new Stu(name,"Absent", isHere, isLate));
+                    abc.add(new Stu(name," is Absent", isHere, isLate));
                 } else {
                     System.out.println("Invalid answer, enter yes or no.");
                     ans = scan.next();
@@ -66,13 +66,13 @@ public class Logger {
 
         for(Stu s : abc){
 
-            System.out.println(s);
+            System.out.println(s.name1 + " " + s.choice + ". ");
         }
 
     }
     public static void latePerson(int index){
         abc.set(index,new Stu(abc.get(index).name1,"late", true,true));
-        System.out.println(abc.get(index).name1);
+        System.out.println(abc.get(index).name1 + " is marked late");
 
     }
 }
