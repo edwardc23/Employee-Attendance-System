@@ -7,7 +7,7 @@ public class Logger {
     Scanner scan = new Scanner(System.in);
     RecordRW rw=new RecordRW();
     ArrayList<Stu> abc= new ArrayList<>();
-
+    
     String name;
 
      class Stu {
