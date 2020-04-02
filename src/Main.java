@@ -147,7 +147,32 @@ public class Main {
 
     static void menuRecords()
     {
-        System.out.println("records");
+        System.out.println(
+                "1. Create Daily Report");
+
+        int input = 0;
+
+        do {
+            try
+            {
+                Scanner scanner = new Scanner(System.in);
+                input = scanner.nextInt();
+                if(input < 1 || input > 1)
+                {
+                    System.out.println("please enter a valid number");
+                }
+            }catch(InputMismatchException e)
+            {
+                System.out.println("please enter a valid integer");
+            }
+        }while(input < 1 || input > 1);
+
+        switch(input)
+        {
+            case 1:
+                writeDailyReport();
+                break;
+        }
     }
 
     static void createEmployee()
@@ -176,10 +201,6 @@ public class Main {
 
     static void modifyEmployeeInfo()
     {
-        employeeList.add(new Employee("firstname1", "lastname1"));
-        employeeList.add(new Employee("firstname2", "lastname2"));
-        employeeList.add(new Employee("firstname3", "lastname3"));
-
         System.out.println("Select the number corresponding to the employee you wish to modify");
         int index = 0;
         for(var i : employeeList)
@@ -331,4 +352,10 @@ public class Main {
 
 
     }
+
+    static void writeDailyReport()
+    {
+        System.out.println("askdjaksldj");
+    }
+
 }
