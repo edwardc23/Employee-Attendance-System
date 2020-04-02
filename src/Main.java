@@ -20,7 +20,7 @@ public class Main {
         while(keepLooping){
             keepLooping = start();
         }
-            System.out.println("I CAHNGED THIS");
+
     }
 
 
@@ -338,16 +338,18 @@ public class Main {
     }
     static void lateAttendee()
     {
-        for(int x=0;x<employeeList.size();x++)
+        for(int x=0;x<l.absent.size();x++)
         {
-            System.out.println((x+1)+". "+employeeList.get(x).firstName);
+            System.out.println((x+1)+". "+l.absent.get(x).name1);
         }
-        int index=-1;
-        do
-        {System.out.println("Choose index number of the student.");
-             index=in.nextInt()-1;
 
-        }while(!l.abc.get(index).here==false&&index!=-1);
+        System.out.println("Choose index number of the student.");
+        int index=in.nextInt()-1;
+        while(index>l.absent.size()-1||index<0){
+         index=in.nextInt()-1;
+        }
+
+
         l.latePerson(index);
 
 
@@ -355,7 +357,13 @@ public class Main {
 
     static void writeDailyReport()
     {
-        System.out.println("askdjaksldj");
+        for(Logger.Stu e:l.abc)
+        {
+            System.out.println(e.name1+" "+e.choice);
+        }
+        System.out.println();
+        System.out.println("Printed to file");
+        rw.writeAttendance(l.abc,"Daily Record");
     }
 
 }

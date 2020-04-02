@@ -1,7 +1,4 @@
-Eron,Warner,ewarns12@gmail.com,4047789876
-firstname1,lastname1,null,null
-firstname2,lastname2,null,null
+Eron,Warner,ewarns12@gmail.com,40477898762
 Eddie,Porter,newport@gmail.com,40456678675
 Kris Lin,Lin,askdsjdk@gmail,232323323232
-firstname1,lastname1,null,null
 Eddy,lastname3,null,null
