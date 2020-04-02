@@ -37,7 +37,9 @@ public class RecordRW {
     }
     public void writeAttendance(ArrayList<Logger.Stu> list,String name)
     {
+
         File file = new File(currDir+"\\src\\"+name+".txt");
+       
         try {
             FileWriter fw= new FileWriter(file);
 
