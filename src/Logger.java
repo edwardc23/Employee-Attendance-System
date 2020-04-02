@@ -59,7 +59,7 @@ int x=0;
 x++;
 
         }
-        rw.writeAttendance(abc,"Daily Record");
+
     }
     public  void latePerson(int index){
         abc.set(absent.get(index).id, new Stu(absent.get(index).name1,"is late",absent.get(index).id, true,true));
@@ -67,7 +67,7 @@ x++;
         absent.remove(index);
 
 
-        rw.writeAttendance(abc,"Daily Record");
+
 
     }
 }

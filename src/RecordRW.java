@@ -37,11 +37,13 @@ public class RecordRW {
     }
     public void writeAttendance(ArrayList<Logger.Stu> list,String name)
     {
-
-        File file = new File(currDir+"\\src\\"+name+".txt");
-       
         try {
-            FileWriter fw= new FileWriter(file);
+            File file = new File(currDir+"\\src\\"+name+".txt");
+            boolean fvar=file.createNewFile();
+            FileWriter fw;
+            if(fvar){fw= new FileWriter(file,false);}
+            else{ fw= new FileWriter(file,true);}
+
 
             LocalDate localDate = LocalDate.now();
             System.out.println(DateTimeFormatter.ofPattern("yyyy/MM/dd").format(localDate));
