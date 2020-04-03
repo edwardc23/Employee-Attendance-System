@@ -1,15 +1,20 @@
 
 
 
+import java.io.File;
 import java.util.*;
 
 public class Logger {
     Scanner scan = new Scanner(System.in);
-    RecordRW rw=new RecordRW();
+    RecordRW rw;
     ArrayList<Stu> abc= new ArrayList<>();
     ArrayList<Stu> absent=new ArrayList<>();
+    ArrayList<Employee>emp = new ArrayList<>();
 
-
+public Logger(RecordRW rw)
+{
+    this.rw=rw;
+}
      class Stu {
         String name1;
         String choice;
@@ -27,7 +32,13 @@ public class Logger {
     }
 
     public void callAttendance(ArrayList<String> names) {
-
+        for(File f:rw.files)
+        {
+            if(f.getName().equals("Employees.txt"))
+            {
+                emp=rw.read();
+            }
+        }
 
         boolean isHere;
         boolean isLate;
@@ -44,13 +55,13 @@ int x=0;
                     isLate = false;
 
 
-                    abc.add(new Stu (name," is Here",x, isHere,isLate));
+                    abc.add(new Stu (name,"is Here",emp.get(x).id, isHere,isLate));
 
                 } else if (ans.toLowerCase().equals("no")) {
                     isHere = false;
                     isLate = false;
-                    absent.add(new Stu(name,"is Absent",x,isHere,isLate));
-                    abc.add(new Stu(name," is Absent", x,isHere, isLate));
+                    absent.add(new Stu(name,"is Absent",emp.get(x).id,isHere,isLate));
+                    abc.add(new Stu(name,"is Absent", emp.get(x).id,isHere, isLate));
                 } else {
                     System.out.println("Invalid answer, enter yes or no.");
                     ans = scan.next();
@@ -62,7 +73,20 @@ x++;
 
     }
     public  void latePerson(int index){
-        abc.set(absent.get(index).id, new Stu(absent.get(index).name1,"is late",absent.get(index).id, true,true));
+        for(File f:rw.files)
+        {
+            if(f.getName().equals("Employees.txt"))
+            {
+                emp=rw.read();
+            }
+        }
+        int x=0;
+        for(Stu s:abc){
+            if(s.id==absent.get(index).id) {
+                abc.set(x, new Stu(absent.get(index).name1, "is late", absent.get(index).id, true, true));
+            }
+            x++;
+        }
         System.out.println(absent.get(index).name1 + " is marked late");
         absent.remove(index);
 

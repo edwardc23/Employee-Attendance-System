@@ -1,14 +1,17 @@
 import org.w3c.dom.ls.LSOutput;
 
 import javax.crypto.spec.PSource;
+import java.io.File;
 import java.io.IOException;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.*;
 import java.io.FileNotFoundException;
 import java.util.Scanner;
 public class Main {
     static RecordRW rw=new RecordRW();
-    static Logger l = new Logger();
-    static List<Employee> employeeList = rw.read();
+    static Logger l = new Logger(rw);
+    static List<Employee> employeeList = new ArrayList<>();
    static Scanner in = new Scanner(System.in);
     public static void main(String[] args) throws FileNotFoundException {
 
@@ -26,6 +29,14 @@ public class Main {
 
     static boolean start()
     {
+
+        for(File f:rw.files)
+        {
+            if(f.getName().equals("Employees.txt"))
+            {
+                employeeList=rw.read();
+            }
+        }
 
         System.out.println("Select a number corresponding to the options below");
         System.out.println("1. Employee\n" +
@@ -58,14 +69,18 @@ public class Main {
         switch (i){
             case 1:
                 menuEmployee();
+                rw.getFile();
                 break;
             case 2:
                 menuRolls();
+                rw.getFile();
                 break;
             case 3:
                 menuRecords();
+                rw.getFile();
                 break;
             default:
+                rw.getFile();
                 return false;
         }
         return true;
@@ -192,6 +207,9 @@ public class Main {
         emp.setEmail(email);
         emp.setPhone(phone);
         employeeList.add(emp);
+        employeeList.get(employeeList.size()-1).setId(employeeList.size()+100);
+        employeeList.get(employeeList.size()-1).setAbsents(0);
+
         try {
             rw.write("Employees",employeeList);
         } catch (IOException e) {
@@ -282,6 +300,8 @@ public class Main {
         System.out.println(employeeList.get(input-1).getLastName());
         System.out.println(employeeList.get(input-1).getEmail());
         System.out.println(employeeList.get(input-1).getPhone());
+        System.out.println(employeeList.get(input-1).getId());
+        System.out.println(employeeList.get(input-1).getNumOfTimesAbsent());
         rw.update(employeeList);
     }
 
@@ -330,6 +350,7 @@ public class Main {
         for(Employee e: employeeList)
         {
             roll.add(e.firstName);
+
         }
 
         l.callAttendance(roll);
@@ -360,10 +381,26 @@ public class Main {
         for(Logger.Stu e:l.abc)
         {
             System.out.println(e.name1+" "+e.choice);
+            if(e.choice.equals("is Absent"))
+            {
+                for(Employee emp:employeeList)
+                {
+                    if(emp.id==e.id)
+                    {
+                        emp.absent();
+                        System.out.println(emp.firstName+" has been absent "+emp.getNumOfTimesAbsent()+" times.");
+                    }
+                }
+            }
         }
         System.out.println();
         System.out.println("Printed to file");
-        rw.writeAttendance(l.abc,"Daily Record");
+        rw.writeAttendance(l.abc,"DailyRecord");
+        try {
+            rw.write("Employees",employeeList);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
 }
