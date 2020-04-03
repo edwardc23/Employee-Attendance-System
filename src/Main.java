@@ -2,6 +2,8 @@ import org.w3c.dom.ls.LSOutput;
 
 import javax.crypto.spec.PSource;
 import java.io.IOException;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.*;
 import java.io.FileNotFoundException;
 import java.util.Scanner;
@@ -193,6 +195,8 @@ public class Main {
         emp.setPhone(phone);
         employeeList.add(emp);
         employeeList.get(employeeList.size()-1).setId(employeeList.size()+100);
+        employeeList.get(employeeList.size()-1).setAbsents(0);
+
         try {
             rw.write("Employees",employeeList);
         } catch (IOException e) {
@@ -362,10 +366,30 @@ public class Main {
         for(Logger.Stu e:l.abc)
         {
             System.out.println(e.name1+" "+e.choice);
+            if(e.choice.equals("is Absent"))
+            {
+                for(Employee emp:employeeList)
+                {
+                    if(emp.id==e.id)
+                    {
+                        emp.absent();
+                        System.out.println(emp.firstName+" has been absent "+emp.getNumOfTimesAbsent()+" times.");
+                    }
+                }
+            }
         }
         System.out.println();
         System.out.println("Printed to file");
-        rw.writeAttendance(l.abc,"Daily Record");
+        LocalDate localDate = LocalDate.now();
+        String date ="Daily Record "+String.valueOf(localDate);
+
+
+        rw.writeAttendance(l.abc,date);
+        try {
+            rw.write("Employees",employeeList);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
 }

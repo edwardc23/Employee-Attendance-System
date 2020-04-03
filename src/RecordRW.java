@@ -51,7 +51,7 @@ public class RecordRW {
             fw.append(DateTimeFormatter.ofPattern("yyyy/MM/dd").format(localDate) + "\n");
             for(Logger.Stu l:list)
             {
-                fw.append(l.name1+"  "+l.choice+"\n");
+                fw.write(l.name1+"  "+l.choice+"\n");
             }
             fw.close();
         } catch (IOException e) {
@@ -59,39 +59,7 @@ public class RecordRW {
         }
 
     }
-    public void writeDailyRecord(String name)
-    {
-        String currDir=System.getProperty("user.dir");
-        try{
-            File file = new File(currDir+"\\src\\"+name+".txt");
-            files.add(file);
-            FileWriter fw= new FileWriter(file);
-            FileWriter fLookup = new FileWriter(fileLookup);
-            int x =0;
-            while(x<=files.size()-1)
-            {
-                if(fileLookup.exists())
-                {
-                    fLookup.append((x + 1) +". "+files.get(x).getName());
-                    fLookup.append("\n" );
-                }
-                else {
-                fLookup.write((x + 1) +". "+files.get(x).getName());
-                fLookup.write("\n");}
-                x++;
-            }
-            fLookup.close();
-            System.out.println("Type in the file");
-            String paragraph=in.nextLine();
-            fw.write(paragraph);
-            fw.close();
-            System.out.println("Done");
 
-        }
-        catch (Exception e){
-            e.printStackTrace();
-        }
-    }
     public void write(String name, List<Employee> emp) throws IOException {
 
             int x=0;
@@ -105,10 +73,11 @@ public class RecordRW {
 
 
         for(Employee a:emp){
-            String line= String.format(a.firstName+","+a.lastName+","+a.email+","+a.phone+","+a.id+"\n");
+            String line= String.format(a.firstName+","+a.lastName+","+a.email+","+a.phone+","+a.id+","+a.numOfTimesAbsent+"\n");
             bw.append(line);
-
+            System.out.println();
         }
+        bw.flush();
         bw.close();
     }
     public ArrayList<Employee> read()
@@ -124,6 +93,8 @@ public class RecordRW {
                     Employee t = new Employee(r[0],r[1]);
                     t.email=r[2];
                     t.phone=r[3];
+                    t.id=Integer.parseInt(r[4]);
+                    t.numOfTimesAbsent=Integer.parseInt(r[5]);
                     de.add(t);
 
             }

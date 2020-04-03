@@ -50,7 +50,7 @@ int x=0;
                     isHere = false;
                     isLate = false;
                     absent.add(new Stu(name,"is Absent",emp.get(x).id,isHere,isLate));
-                    abc.add(new Stu(name," is Absent", emp.get(x).id,isHere, isLate));
+                    abc.add(new Stu(name,"is Absent", emp.get(x).id,isHere, isLate));
                 } else {
                     System.out.println("Invalid answer, enter yes or no.");
                     ans = scan.next();
