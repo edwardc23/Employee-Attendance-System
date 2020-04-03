@@ -360,7 +360,6 @@ public class Main {
         for(Logger.Stu e:l.abc)
         {
             System.out.println(e.name1+" "+e.choice);
-            
         }
         System.out.println();
         System.out.println("Printed to file");
