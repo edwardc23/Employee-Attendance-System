@@ -8,7 +8,7 @@ public class Logger {
     RecordRW rw=new RecordRW();
     ArrayList<Stu> abc= new ArrayList<>();
     ArrayList<Stu> absent=new ArrayList<>();
-
+    ArrayList<Employee>emp = rw.read();
 
      class Stu {
         String name1;
@@ -44,13 +44,13 @@ int x=0;
                     isLate = false;
 
 
-                    abc.add(new Stu (name," is Here",x, isHere,isLate));
+                    abc.add(new Stu (name," is Here",emp.get(x).id, isHere,isLate));
 
                 } else if (ans.toLowerCase().equals("no")) {
                     isHere = false;
                     isLate = false;
-                    absent.add(new Stu(name,"is Absent",x,isHere,isLate));
-                    abc.add(new Stu(name," is Absent", x,isHere, isLate));
+                    absent.add(new Stu(name,"is Absent",emp.get(x).id,isHere,isLate));
+                    abc.add(new Stu(name," is Absent", emp.get(x).id,isHere, isLate));
                 } else {
                     System.out.println("Invalid answer, enter yes or no.");
                     ans = scan.next();

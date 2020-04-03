@@ -105,7 +105,7 @@ public class RecordRW {
 
 
         for(Employee a:emp){
-            String line= String.format(a.firstName+","+a.lastName+","+a.email+","+a.phone+"\n");
+            String line= String.format(a.firstName+","+a.lastName+","+a.email+","+a.phone+","+a.id+"\n");
             bw.append(line);
 
         }

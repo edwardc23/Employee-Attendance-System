@@ -192,6 +192,7 @@ public class Main {
         emp.setEmail(email);
         emp.setPhone(phone);
         employeeList.add(emp);
+        employeeList.get(employeeList.size()-1).setId(employeeList.size()+100);
         try {
             rw.write("Employees",employeeList);
         } catch (IOException e) {
@@ -330,6 +331,7 @@ public class Main {
         for(Employee e: employeeList)
         {
             roll.add(e.firstName);
+
         }
 
         l.callAttendance(roll);
