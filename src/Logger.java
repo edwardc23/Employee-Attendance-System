@@ -1,6 +1,7 @@
 
 
 
+import java.io.File;
 import java.util.*;
 
 public class Logger {
@@ -8,7 +9,8 @@ public class Logger {
     RecordRW rw=new RecordRW();
     ArrayList<Stu> abc= new ArrayList<>();
     ArrayList<Stu> absent=new ArrayList<>();
-    ArrayList<Employee>emp = rw.read();
+    ArrayList<Employee>emp = new ArrayList<>();
+
 
      class Stu {
         String name1;
@@ -27,7 +29,13 @@ public class Logger {
     }
 
     public void callAttendance(ArrayList<String> names) {
-
+        for(File f:rw.files)
+        {
+            if(f.getName().equals("Employees.txt"))
+            {
+                emp=rw.read();
+            }
+        }
 
         boolean isHere;
         boolean isLate;
@@ -44,7 +52,7 @@ int x=0;
                     isLate = false;
 
 
-                    abc.add(new Stu (name," is Here",emp.get(x).id, isHere,isLate));
+                    abc.add(new Stu (name,"is Here",emp.get(x).id, isHere,isLate));
 
                 } else if (ans.toLowerCase().equals("no")) {
                     isHere = false;
@@ -62,6 +70,13 @@ x++;
 
     }
     public  void latePerson(int index){
+        for(File f:rw.files)
+        {
+            if(f.getName().equals("Employees.txt"))
+            {
+                emp=rw.read();
+            }
+        }
         abc.set(absent.get(index).id, new Stu(absent.get(index).name1,"is late",absent.get(index).id, true,true));
         System.out.println(absent.get(index).name1 + " is marked late");
         absent.remove(index);

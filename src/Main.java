@@ -1,6 +1,7 @@
 import org.w3c.dom.ls.LSOutput;
 
 import javax.crypto.spec.PSource;
+import java.io.File;
 import java.io.IOException;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
@@ -10,7 +11,7 @@ import java.util.Scanner;
 public class Main {
     static RecordRW rw=new RecordRW();
     static Logger l = new Logger();
-    static List<Employee> employeeList = rw.read();
+    static List<Employee> employeeList = new ArrayList<>();
    static Scanner in = new Scanner(System.in);
     public static void main(String[] args) throws FileNotFoundException {
 
@@ -28,6 +29,14 @@ public class Main {
 
     static boolean start()
     {
+
+        for(File f:rw.files)
+        {
+            if(f.getName().equals("Employees.txt"))
+            {
+                employeeList=rw.read();
+            }
+        }
 
         System.out.println("Select a number corresponding to the options below");
         System.out.println("1. Employee\n" +
@@ -60,14 +69,18 @@ public class Main {
         switch (i){
             case 1:
                 menuEmployee();
+                rw.getFile();
                 break;
             case 2:
                 menuRolls();
+                rw.getFile();
                 break;
             case 3:
                 menuRecords();
+                rw.getFile();
                 break;
             default:
+                rw.getFile();
                 return false;
         }
         return true;

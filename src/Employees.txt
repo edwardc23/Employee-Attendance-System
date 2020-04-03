@@ -1,2 +1,2 @@
-Eron,Warner,ewarner12@gmail.com,4041233214,101
-Edward,Cochran,edwardcoc23@gmail.com,4049840123,102
+Edward,Cochran,edwardc23@gmail.com,4044345654,101,1
+Kris,Lin,klin23@gmail.com,4049878765,102,0

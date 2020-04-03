@@ -1,26 +1,66 @@
 import java.io.*;
+import java.nio.file.Path;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Scanner;
 
 public class RecordRW {
-    static ArrayList<File> files = new ArrayList<>();
+     HashSet<File> files = new HashSet<>();
+     ArrayList<String> filenames=new ArrayList<>();
     String[] sentences;
     File currentFile;
     String currDir = System.getProperty("user.dir");
     Scanner in = new Scanner(System.in);
     File fileLookup = new File(System.getProperty("user.dir") + "\\src\\" + "files" + ".txt");
-    ;
+    File fileFull =new File(currDir + "\\src\\" + "Full files" + ".txt");
+public RecordRW()
+{
 
+    if(fileFull.exists())
+    {
+        getFile();
+    }
+}
+
+    public void getFile()
+    {
+
+
+        FileWriter fw= null;
+
+        try {
+
+
+                Scanner scan = new Scanner(fileFull);
+                while (scan.hasNextLine()) {
+                    File a = new File(scan.nextLine());
+                    files.add(a);
+                }
+            fw = new FileWriter(fileFull);
+            for(File f:files)
+            {
+                fw.append(f.getAbsolutePath()+"\n");
+                fw.flush();
+            }
+
+            fw.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+
+
+    }
     public void readSaveFile(int index) {
         for (File a : files) {
             if (files.size() < index - 1) {
                 System.out.println("Pick a number in the List");
                 readSaveFile(in.nextInt() - 1);
             } else {
-                currentFile = files.get(index - 1);
+//                currentFile = files.get(index - 1);
             }
         }
         try {
@@ -35,6 +75,8 @@ public class RecordRW {
     public void writeAttendance(ArrayList<Logger.Stu> list, String name) {
         try {
             File file = new File(currDir + "\\src\\" + name + ".txt");
+            files.add(file);
+            filenames.add(file.getName());
             boolean fvar = file.createNewFile();
             FileWriter fw;
             if (fvar) {
@@ -69,7 +111,7 @@ public class RecordRW {
                     fw.append(c.name1 + "\n");
                 }
             }
-
+            fw.flush();
             fw.close();
         } catch (IOException e) {
             e.printStackTrace();
@@ -82,7 +124,7 @@ public class RecordRW {
         int x = 0;
         File file = new File(currDir + "\\src\\" + name + ".txt");
         files.add(file);
-
+        filenames.add(file.getName());
         FileOutputStream fos = new FileOutputStream(file);
 
         BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(fos));
