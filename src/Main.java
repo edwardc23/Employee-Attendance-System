@@ -163,7 +163,8 @@ public class Main {
     static void menuRecords()
     {
         System.out.println(
-                "1. Create Daily Report");
+                "1. Create Daily Report\n" +
+                "2. Check Absences");
 
         int input = 0;
 
@@ -172,7 +173,7 @@ public class Main {
             {
                 Scanner scanner = new Scanner(System.in);
                 input = scanner.nextInt();
-                if(input < 1 || input > 1)
+                if(input < 1 || input > 2)
                 {
                     System.out.println("please enter a valid number");
                 }
@@ -180,12 +181,15 @@ public class Main {
             {
                 System.out.println("please enter a valid integer");
             }
-        }while(input < 1 || input > 1);
+        }while(input < 1 || input > 2);
 
         switch(input)
         {
             case 1:
                 writeDailyReport();
+                break;
+            case 2:
+                checkAbsences();
                 break;
         }
     }
@@ -403,4 +407,33 @@ public class Main {
         }
     }
 
+    public static void checkAbsences(){
+        System.out.println("Select the employee you wish to view absent count");
+
+        int index = 0;
+        for(var emp: employeeList)
+        {
+            System.out.println(++index + ". " + emp.getFirstName() + " " + emp.getLastName());
+        }
+
+        int input = 0;
+
+        do {
+            try
+            {
+                Scanner scanner = new Scanner(System.in);
+                input = scanner.nextInt();
+                if(input < 1 || input > employeeList.size() +1)
+                {
+                    System.out.println("please enter a valid number");
+                }
+            }catch(InputMismatchException e)
+            {
+                System.out.println("please enter a valid integer");
+            }
+        }while(input < 1 || input > employeeList.size() +1);
+
+        System.out.println(employeeList.get(input-1).getFirstName() + " " + employeeList.get(input-1).getLastName()
+            + " has " + employeeList.get(input-1).getNumOfTimesAbsent() + " absences.");
+    }
 }
