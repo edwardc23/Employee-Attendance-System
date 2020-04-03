@@ -73,7 +73,7 @@ public class RecordRW {
                 if(fileLookup.exists())
                 {
                     fLookup.append((x + 1) +". "+files.get(x).getName());
-                    fLookup.append("\n");
+                    fLookup.append("\n" );
                 }
                 else {
                 fLookup.write((x + 1) +". "+files.get(x).getName());
