@@ -44,13 +44,13 @@ int x=0;
                     isLate = false;
 
 
-                    abc.add(new Stu (name," is Here",x, isHere,isLate));
+                    abc.add(new Stu (name,"is Here",x, isHere,isLate));
 
                 } else if (ans.toLowerCase().equals("no")) {
                     isHere = false;
                     isLate = false;
                     absent.add(new Stu(name,"is Absent",x,isHere,isLate));
-                    abc.add(new Stu(name," is Absent", x,isHere, isLate));
+                    abc.add(new Stu(name,"is Absent", x,isHere, isLate));
                 } else {
                     System.out.println("Invalid answer, enter yes or no.");
                     ans = scan.next();
