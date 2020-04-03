@@ -1,26 +1,76 @@
 import java.io.*;
+import java.nio.file.Path;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Scanner;
 
 public class RecordRW {
-    static ArrayList<File> files = new ArrayList<>();
+     HashSet<File> files = new HashSet<>();
+     ArrayList<String> filenames=new ArrayList<>();
     String[] sentences;
     File currentFile;
     String currDir = System.getProperty("user.dir");
     Scanner in = new Scanner(System.in);
     File fileLookup = new File(System.getProperty("user.dir") + "\\src\\" + "files" + ".txt");
-    ;
+    File fileFull =new File(currDir + "\\src\\" + "Full files" + ".txt");
+public RecordRW()
+{
+    fileFull=new File(currDir + "\\src\\" + "Full files" + ".txt");
+    if(fileFull.exists())
+    {
+        getFile();
+    }
+    else
+    {
+        try {
+            FileWriter fw=new FileWriter(fileFull);
+            fw.write(" ");
+            fw.flush();
+            fw.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+}
 
+    public void getFile()
+    {
+
+
+        FileWriter fw= null;
+
+        try {
+                Scanner scan = new Scanner(fileFull);
+                while (scan.hasNextLine()) {
+                    File a = new File(scan.nextLine());
+                    files.add(a);
+                }
+            fw = new FileWriter(fileFull);
+            for(File f:files)
+            {
+                if(!f.getName().equals(" ")){
+                fw.append(f.getAbsolutePath()+"\n");
+                fw.flush();}
+            }
+
+            fw.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+
+
+    }
     public void readSaveFile(int index) {
         for (File a : files) {
             if (files.size() < index - 1) {
                 System.out.println("Pick a number in the List");
                 readSaveFile(in.nextInt() - 1);
             } else {
-                currentFile = files.get(index - 1);
+//                currentFile = files.get(index - 1);
             }
         }
         try {
@@ -35,6 +85,8 @@ public class RecordRW {
     public void writeAttendance(ArrayList<Logger.Stu> list, String name) {
         try {
             File file = new File(currDir + "\\src\\" + name + ".txt");
+            files.add(file);
+            filenames.add(file.getName());
             boolean fvar = file.createNewFile();
             FileWriter fw;
             if (fvar) {
@@ -69,7 +121,7 @@ public class RecordRW {
                     fw.append(c.name1 + "\n");
                 }
             }
-
+            fw.flush();
             fw.close();
         } catch (IOException e) {
             e.printStackTrace();
@@ -77,52 +129,24 @@ public class RecordRW {
 
     }
 
-    public void writeDailyRecord(String name) {
-        String currDir = System.getProperty("user.dir");
-        try {
-            File file = new File(currDir + "\\src\\" + name + ".txt");
-            files.add(file);
-            FileWriter fw = new FileWriter(file);
-            FileWriter fLookup = new FileWriter(fileLookup);
-            int x = 0;
-            while (x <= files.size() - 1) {
-                if (fileLookup.exists()) {
-                    fLookup.append((x + 1) + ". " + files.get(x).getName());
-                    fLookup.append("\n");
-                } else {
-                    fLookup.write((x + 1) + ". " + files.get(x).getName());
-                    fLookup.write("\n");
-                }
-                x++;
-            }
-            fLookup.close();
-            System.out.println("Type in the file");
-            String paragraph = in.nextLine();
-            fw.write(paragraph);
-            fw.close();
-            System.out.println("Done");
-
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
-
     public void write(String name, List<Employee> emp) throws IOException {
 
         int x = 0;
         File file = new File(currDir + "\\src\\" + name + ".txt");
         files.add(file);
-
+        filenames.add(file.getName());
         FileOutputStream fos = new FileOutputStream(file);
 
         BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(fos));
 
 
-        for (Employee a : emp) {
-            String line = String.format(a.firstName + "," + a.lastName + "," + a.email + "," + a.phone + "\n");
-            bw.append(line);
 
+        for(Employee a:emp){
+            String line= String.format(a.firstName+","+a.lastName+","+a.email+","+a.phone+","+a.id+","+a.numOfTimesAbsent+"\n");
+            bw.append(line);
+            System.out.println();
         }
+        bw.flush();
         bw.close();
     }
 
@@ -131,13 +155,16 @@ public class RecordRW {
 
         File file = new File(currDir + "\\src\\Employees.txt");
         try {
-            Scanner readF = new Scanner(file);
-            while (readF.hasNextLine()) {
-                String[] r = readF.nextLine().split(",");
-                Employee t = new Employee(r[0], r[1]);
-                t.email = r[2];
-                t.phone = r[3];
-                de.add(t);
+            Scanner readF=new Scanner(file);
+            while(readF.hasNextLine())
+            {
+                String [] r=readF.nextLine().split(",");
+                    Employee t = new Employee(r[0],r[1]);
+                    t.email=r[2];
+                    t.phone=r[3];
+                    t.id=Integer.parseInt(r[4]);
+                    t.numOfTimesAbsent=Integer.parseInt(r[5]);
+                    de.add(t);
 
             }
         } catch (FileNotFoundException e) {
@@ -154,7 +181,7 @@ public class RecordRW {
             fos = new FileOutputStream(file);
             BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(fos));
             for (Employee r : d) {
-                bw.write(r.firstName + "," + r.lastName + "," + r.email + "," + r.phone + "\n");
+                bw.write(r.firstName + "," + r.lastName + "," + r.email + "," + r.phone +","+r.id+","+r.numOfTimesAbsent+"\n");
             }
             bw.close();
         } catch (Exception e) {

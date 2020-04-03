@@ -27,6 +27,7 @@ public class User {
     {
         this.id = id;
     }
+    public int setAbsents(int absent){return this.numOfTimesAbsent=absent;}
     public void absent(){ this.numOfTimesAbsent++;}
 
     public String getFirstName(){ return firstName;}
@@ -34,6 +35,7 @@ public class User {
     public String getEmail(){ return email;}
     public String getPhone(){ return phone;}
     public int getId(){return id;}
+
     public int getNumOfTimesAbsent(){ return numOfTimesAbsent;}
 
 
