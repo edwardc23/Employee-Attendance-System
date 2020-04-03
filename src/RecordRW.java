@@ -129,7 +129,7 @@ public class RecordRW {
             fos = new FileOutputStream(file);
             BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(fos));
             for (Employee r : d) {
-                bw.write(r.firstName + "," + r.lastName + "," + r.email + "," + r.phone + "\n");
+                bw.write(r.firstName + "," + r.lastName + "," + r.email + "," + r.phone +","+r.id+","+r.numOfTimesAbsent+"\n");
             }
             bw.close();
         } catch (Exception e) {

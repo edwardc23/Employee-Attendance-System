@@ -287,6 +287,8 @@ public class Main {
         System.out.println(employeeList.get(input-1).getLastName());
         System.out.println(employeeList.get(input-1).getEmail());
         System.out.println(employeeList.get(input-1).getPhone());
+        System.out.println(employeeList.get(input-1).getId());
+        System.out.println(employeeList.get(input-1).getNumOfTimesAbsent());
         rw.update(employeeList);
     }
 
