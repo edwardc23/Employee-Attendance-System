@@ -10,7 +10,7 @@ import java.io.FileNotFoundException;
 import java.util.Scanner;
 public class Main {
     static RecordRW rw=new RecordRW();
-    static Logger l = new Logger();
+    static Logger l = new Logger(rw);
     static List<Employee> employeeList = new ArrayList<>();
    static Scanner in = new Scanner(System.in);
     public static void main(String[] args) throws FileNotFoundException {
@@ -395,11 +395,7 @@ public class Main {
         }
         System.out.println();
         System.out.println("Printed to file");
-        LocalDate localDate = LocalDate.now();
-        String date ="Daily Record "+String.valueOf(localDate);
-
-
-        rw.writeAttendance(l.abc,date);
+        rw.writeAttendance(l.abc,"DailyRecord");
         try {
             rw.write("Employees",employeeList);
         } catch (IOException e) {

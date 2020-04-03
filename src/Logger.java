@@ -6,12 +6,15 @@ import java.util.*;
 
 public class Logger {
     Scanner scan = new Scanner(System.in);
-    RecordRW rw=new RecordRW();
+    RecordRW rw;
     ArrayList<Stu> abc= new ArrayList<>();
     ArrayList<Stu> absent=new ArrayList<>();
     ArrayList<Employee>emp = new ArrayList<>();
 
-
+public Logger(RecordRW rw)
+{
+    this.rw=rw;
+}
      class Stu {
         String name1;
         String choice;
@@ -77,7 +80,13 @@ x++;
                 emp=rw.read();
             }
         }
-        abc.set(absent.get(index).id, new Stu(absent.get(index).name1,"is late",absent.get(index).id, true,true));
+        int x=0;
+        for(Stu s:abc){
+            if(s.id==absent.get(index).id) {
+                abc.set(x, new Stu(absent.get(index).name1, "is late", absent.get(index).id, true, true));
+            }
+            x++;
+        }
         System.out.println(absent.get(index).name1 + " is marked late");
         absent.remove(index);
 

@@ -18,10 +18,21 @@ public class RecordRW {
     File fileFull =new File(currDir + "\\src\\" + "Full files" + ".txt");
 public RecordRW()
 {
-
+    fileFull=new File(currDir + "\\src\\" + "Full files" + ".txt");
     if(fileFull.exists())
     {
         getFile();
+    }
+    else
+    {
+        try {
+            FileWriter fw=new FileWriter(fileFull);
+            fw.write(" ");
+            fw.flush();
+            fw.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 }
 
@@ -32,8 +43,6 @@ public RecordRW()
         FileWriter fw= null;
 
         try {
-
-
                 Scanner scan = new Scanner(fileFull);
                 while (scan.hasNextLine()) {
                     File a = new File(scan.nextLine());
@@ -42,8 +51,9 @@ public RecordRW()
             fw = new FileWriter(fileFull);
             for(File f:files)
             {
+                if(!f.getName().equals(" ")){
                 fw.append(f.getAbsolutePath()+"\n");
-                fw.flush();
+                fw.flush();}
             }
 
             fw.close();
