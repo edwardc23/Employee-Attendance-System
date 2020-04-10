@@ -8,3 +8,7 @@
 Employee-Attendance-System.iml
 
 .idea/modules.xml
+
+out/production/Employee-Attendance-System/Main.class
+
+out/production/Employee-Attendance-System/
