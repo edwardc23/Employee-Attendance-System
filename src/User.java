@@ -1,17 +1,11 @@
 public class User {
-    private String firstName;
-    private String lastName;
-    private String email;
-    private String phone;
-    private int id;
-    private int numOfTimesAbsent = 0;
+    protected String firstName;
+    protected String lastName;
+    protected String email;
+    protected String phone;
+    protected int id;
+    protected int numOfTimesAbsent = 0;
 
-
-    public User(String first, String last)
-    {
-        this.firstName = first;
-        this.lastName = last;
-    }
 
     public void setFirstName(String first)
     {
@@ -33,6 +27,7 @@ public class User {
     {
         this.id = id;
     }
+    public int setAbsents(int absent){return this.numOfTimesAbsent=absent;}
     public void absent(){ this.numOfTimesAbsent++;}
 
     public String getFirstName(){ return firstName;}
@@ -40,6 +35,7 @@ public class User {
     public String getEmail(){ return email;}
     public String getPhone(){ return phone;}
     public int getId(){return id;}
+
     public int getNumOfTimesAbsent(){ return numOfTimesAbsent;}
 
 

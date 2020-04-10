@@ -1,8 +1,34 @@
-package academy.learnprogramming;
+   // boolean isHoliday;
+public class Employee extends User {
 
-public class Employee {
+    public Employee(String first, String last)
+    {
+        this.firstName = first;
+        this.lastName = last;
+    }
 
-    int vacationTime;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ /*   int vacationTime;
     int daysRequestedOff;
     boolean isHoliday;
     boolean isHere;
@@ -30,10 +56,5 @@ public class Employee {
         }
     }
 
-
-    public static void main(String[] args) {
-        Employee em = new Employee(false,false);
-        em.getVacationTime();
-        em.setDaysRequestedOff(5);
-    }
+*/
 }
